@@ -24,7 +24,7 @@
       <button class="material-icons" title="Add Counter" onclick="addDie(cont, 1, 'Counter', true);">pin</button>
       <button class="material-icons" title="Add Bag" onclick="addDieBag(cont);">create_new_folder</button>
     </div>
-    <div class="content dropHere" ondrop="drop(event)" ondragover="allowDrop(event)"><div></div></div>
+    <div class="content" ondrop="drop(event)" ondragover="allowDrop(event)"><div class="dropHere"></div></div>
     <templates>
       <template id="dieUI"><div class="die rollable{IS_COUNTER}" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
           <div>
