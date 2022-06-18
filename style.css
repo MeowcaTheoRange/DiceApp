@@ -127,6 +127,17 @@ body {padding:0;margin:0;background-color:var(--mainColorThemedLight);}
   padding: 0 64px;
   padding-bottom: 64px;
 }
+.content > div:empty::before {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  width: 100vw;
+  text-align: center;
+  padding: 8px;
+  box-sizing: border-box;
+  content: "No dice.";
+  font-size: 24px;
+}
 
 templates, template {
   display: none;
@@ -167,10 +178,22 @@ div.bag > div.dropHere {
   border-radius: 4px;
   padding: 16px;
   padding-bottom: 64px;
+  position: relative;
 }
 
 div.bag > div.dropHere:empty {
   padding: 32px;
+}
+div.bag > div.dropHere:empty::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  box-sizing: border-box;
+  content: "No dice.";
+  font-size: 24px;
 }
 
 div.die h2 {
