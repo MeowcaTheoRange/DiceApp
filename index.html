@@ -26,8 +26,7 @@
     </div>
     <div class="content dropHere" ondrop="drop(event)" ondragover="allowDrop(event)"><div></div></div>
     <templates>
-      <template id="dieUI">
-        <div class="die rollable{IS_COUNTER}" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
+      <template id="dieUI"><div class="die rollable{IS_COUNTER}" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
           <div>
             <span class="material-icons icon ident">casino</span><input class="title" placeholder="Name" type="text" value="{TITLE_DIE}" />
             <button class="material-icons icon indi neg" onclick="tp(this).remove()">delete</button><br />
@@ -39,10 +38,8 @@
             <span class="hideIfCounter"><button class="material-icons icon" title="Cut die to value" onclick="cutVal(ht(tp(this)))">content_cut</button></span><br />
             <span><h2 class="die-value">{DIE_VALUE}</h2><span class="hideIfCounter"> / <input class="die-sides" type="number" min="1" max="10000" value="{DIE_SIDES}" /></span></span>
           </div>
-        </div>
-      </template>
-      <template id="dieBagUI">
-        <div class="die bag" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
+      </div></template>
+      <template id="dieBagUI"><div class="die bag" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
           <div>
             <span class="material-icons icon ident">folder</span><input class="title" placeholder="Name" type="text" value="{TITLE_DIE}" />
             <button class="material-icons icon indi neg" onclick="if (confirm('Are you sure you want to remove this bag?')) tp(this).remove()">delete</button><br />
@@ -52,8 +49,7 @@
             <button class="material-icons icon indi pos" title="Add Bag" onclick="addDieBag(tp(this).find('.dropHere').get(0))">create_new_folder</button>
           </div>
           <div class="dropHere"></div>
-        </div>
-      </template>
+      </div></template>
     </templates>
     <script src="script.js"></script>
   </body>
