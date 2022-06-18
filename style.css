@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+@font-face {
+  font-family: 'PFW';
+  src: url('assets/ProFontWindows.ttf');
+}
+
+:root {
+  --mainColor: #f80;
+  --mainColorThemed: #fdb;
+  --mainColorThemedLight: #fed;
+  --mainFG: #000;
+  --mainFGDark: #FFF;
+  --mainFGTP: #0002;
+  --mainFGDarkTP: #FFF2;
+  --mainFGTP4: #0008;
+  --mainFGDarkTP4: #FFF8;
+  --negColor: #f00;
+  --negColorThemed: #fbb;
+  --negColorThemedLight: #fdd;
+  --posColor: #f80;
+  --posColorThemed: #ffd0a0;
+  --material-outline-boxshadow: #0004 0 0 4px;
+  --material-outline-border: none;
+}
+
+* {
+  font-family: 'PFW', 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  transition: background-color 0.25s;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mainColorThemed: #840;
+    --mainColorThemedLight: #420;
+    --mainFG: #FFF;
+    --mainFGDark: #000;
+    --mainFGTP: #FFF2;
+    --mainFGDarkTP: #0002;
+    --mainFGTP4: #FFF8;
+    --mainFGDarkTP4: #0008;
+    --negColorThemed: #800;
+    --negColorThemedLight: #400;
+    --posColorThemed: #840;
+    --posColorThemedLight: #630;
+    --material-outline-boxshadow: none;
+    --material-outline-border: var(--mainFGTP) 1px solid;
+  }
+}
+
+body {padding:0;margin:0;background-color:var(--mainColorThemedLight);}
+
+.headerBar {
+  width: 100%;
+  height: 56px;
+  z-index: 9;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 40px;
+  position: fixed;
+  -webkit-user-select: none;
+  user-select: none;
+  top: 0;
+  background-color: var(--mainColorThemed);
+  box-shadow: var(--material-outline-boxshadow);
+  border-bottom: var(--material-outline-border);
+  line-height: 40px;
+  color: var(--mainFG);
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  transition: box-shadow 0.25s, background-color 0.25s;
+}
+
+.fab {
+  position: fixed;
+  z-index: 9;
+  background-color: var(--mainColorThemed);
+  border-radius: 64px;
+  height: 64px;
+  width: 192px;
+  right: 32px;
+  bottom: 32px;
+  display: grid;
+  overflow: hidden;
+  user-select: none;
+  grid-template-columns: auto auto auto;
+  box-shadow: #0004 0 0 4px 0;
+}
+
+.fab button {
+  border: none;
+  background-color: transparent;
+  color: var(--mainFG);
+  font-size: 32px;
+}
+.fab button:hover {
+  background-color: var(--mainFGTP);
+}
+.fab button:active {
+  transition: none;
+  background-color: var(--mainColor);
+}
+
+.headerBar button {
+  height: 40px;
+  background-color: transparent;
+  padding: 4px; margin: 0;
+  margin-left: 8px;
+  color: var(--mainFG);
+  border: none;
+  border-radius: 40px;
+  transition: background 0.25s;
+}
+
+.headerBar button:hover {
+  background-color: var(--mainFGTP);
+}
+
+.content {
+  background-color: var(--mainColorThemedLight);
+  color: var(--mainFG);
+  height: calc(100vh - 56px);
+  margin-top: 56px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 0 64px;
+  padding-bottom: 64px;
+}
+
+templates, template {
+  display: none;
+}
+
+div.die {
+  width: 100%;
+  border: var(--material-outline-border);
+  box-shadow: var(--material-outline-boxshadow);
+  color: var(--mainFG);
+  margin: 16px 0;
+  border-radius: 8px;
+  padding: 16px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto auto;
+  animation-name: horizontal-shaking;
+  animation-duration: 0.25s;
+}
+
+.counter .hideIfCounter {
+  display: none;
+}
+
+div.bag {
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  height: max-content;
+}
+
+div.die > div {
+  user-select: none;
+}
+
+div.bag > div.dropHere {
+  border: var(--mainFGTP) 1px solid;
+  border-radius: 4px;
+  padding: 16px;
+  padding-bottom: 64px;
+}
+
+div.bag > div.dropHere:empty {
+  padding: 32px;
+}
+
+div.die h2 {
+  padding: 0; margin: 0;
+  display: inline-block;
+}
+
+div.die input {
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0;
+  font-size: 16px;
+  margin-bottom: 8px;
+  background-color: var(--mainFGDarkTP4);
+  border: 1px solid var(--mainFGTP);
+  color: var(--mainFG);
+  outline: none;
+  transition: border 0.25s, border-radius 0.25s, background-color 0.25s;
+  vertical-align: middle;
+}
+div.die .die-value {
+  vertical-align: middle;
+}
+
+div.die input.die-sides {
+  vertical-align: baseline;
+  width: 48px;
+  height: 24px;
+}
+div.die input.title {
+  padding: 8px;
+}
+
+div.die input:focus {
+  background-color: var(--mainFGTP);
+  border: 1px solid var(--mainFG);
+}
+
+div.die input.title:not(:placeholder-shown) {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+div.die input.title:not(:placeholder-shown):hover {
+  border-bottom: 1px solid var(--mainFG);
+}
+
+div.die button {
+  border-radius: 4px;
+  padding: 8px;
+  margin: 0;
+  font-size: 12px;
+  background-color: transparent;
+  border: 1px solid var(--mainFGTP);
+  color: var(--mainFG);
+  outline: none;
+  transition: background-color 0.25s;
+}
+
+div.die button.icon {
+  margin-bottom: 8px;
+  font-size: 19px;
+  vertical-align: middle;
+}
+div.die button:hover {
+  background-color: var(--mainFGTP);
+}
+div.die button:active {
+  border: 1px solid var(--mainFG);
+}
+
+.indi.neg {
+  background-color: var(--negColorThemed);
+}
+
+.indi.neg:hover {
+  background-color: var(--negColorThemedLight);
+}
+
+.indi.pos {
+  background-color: var(--posColorThemed);
+}
+
+.ident {
+  font-size: 19px;
+  vertical-align: top;
+  margin: 6px;
+  margin-right: 8px;
+}
+
+@media (max-width: 675px) {
+  div.content {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 875px) {
+  div.content {
+    padding: 0 20%;
+  }
+}
+
+@media (min-width: 1200px) {
+  div.content {
+    padding: 0 10%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    overflow-y: auto;
+  }
+  div.content > div {
+    column-count: 2;
+  }
+  div.die {
+    break-inside: avoid-column;
+    list-style-type: none;
+    margin-top: 0;
+    border: var(--mainFGTP) 1px solid;
+    box-shadow: none;
+  }
+  div.bag {
+    column-span: all;
+    margin-top: 16px;
+  }
+  div.bag div.dropHere {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1775px) {
+  div.content > div {
+    column-count: 3;
+  }
+}

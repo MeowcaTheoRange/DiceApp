@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dice Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="headerBar">
+      <div style="float: left; text-align: left;">
+        Dice Tool
+      </div>
+      <div style="float: right; text-align: right;">
+        <button class="material-icons" onclick="rollAllDie(cont)">shuffle</button>
+        <button class="material-icons" onclick="if (confirm('Are you sure you want to remove everything?')) $('.content').find('.die').remove()">cancel</button>
+      </div>
+    </div>
+    <div class="fab">
+      <button class="material-icons" title="Add Dice" onclick="addDie(cont);">add_circle</button>
+      <button class="material-icons" title="Add Counter" onclick="addDie(cont, 1, 'Counter', true);">pin</button>
+      <button class="material-icons" title="Add Bag" onclick="addDieBag(cont);">create_new_folder</button>
+    </div>
+    <div class="content dropHere" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div>
+
+      </div>
+    </div>
+    <templates>
+      <template id="dieUI">
+        <div class="die rollable{IS_COUNTER}" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
+          <div>
+            <span class="material-icons icon ident">casino</span><input class="title" placeholder="Name" type="text" value="{TITLE_DIE}" />
+            <button class="material-icons icon indi neg" onclick="tp(this).remove()">delete</button><br />
+            <div class="hideIfCounter"><button class="material-icons icon indi pos" title="Roll die" onclick="rollDie(ht(tpp(this)))">shuffle</button></div>
+          </div>
+          <div style="text-align: right;">
+            <button class="material-icons icon" onclick="changeVal(ht($(this)), -1)">remove</button>
+            <button class="material-icons icon" onclick="changeVal(ht($(this)), 1)">add</button>
+            <span class="hideIfCounter"><button class="material-icons icon" title="Cut die to value" onclick="cutVal(ht(tp(this)))">content_cut</button></span><br />
+            <span><h2 class="die-value">{DIE_VALUE}</h2><span class="hideIfCounter"> / <input class="die-sides" type="number" min="1" max="10000" value="{DIE_SIDES}" /></span></span>
+          </div>
+        </div>
+      </template>
+      <template id="dieBagUI">
+        <div class="die bag" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
+          <div>
+            <span class="material-icons icon ident">folder</span><input class="title" placeholder="Name" type="text" value="{TITLE_DIE}" />
+            <button class="material-icons icon indi neg" onclick="if (confirm('Are you sure you want to remove this bag?')) tp(this).remove()">delete</button><br />
+            <button class="material-icons icon indi pos" title="Roll all dies inside" onclick="rollAllDie(ht(tp(this)))">shuffle</button>
+            <button class="material-icons icon indi pos" title="Add Dice" onclick="addDie(tp(this).find('.dropHere').get(0))">add_circle</button>
+            <button class="material-icons icon indi pos" title="Add Counter" onclick="addDie(tp(this).find('.dropHere').get(0), 1, 'Counter', true)">pin</button>
+            <button class="material-icons icon indi pos" title="Add Bag" onclick="addDieBag(tp(this).find('.dropHere').get(0))">create_new_folder</button>
+          </div>
+          <div class="dropHere"></div>
+        </div>
+      </template>
+    </templates>
+    <script src="script.js"></script>
+  </body>
+</html>
