@@ -111,6 +111,7 @@ body {padding:0;margin:0;background-color:var(--mainColorThemedLight);}
   border: none;
   border-radius: 40px;
   transition: background 0.25s;
+  vertical-align: middle;
 }
 
 .headerBar button:hover {
@@ -168,6 +169,23 @@ div.die {
   display: none;
 }
 
+.compactMode .hos {
+  display: none;
+}
+div.hideIfCounter {
+  display: inline-block;
+}
+body:not(.compactMode) .headerBar button.toc {
+  color: var(--posColor);
+}
+
+.compactMode div.die h2 {
+  height: 32px;
+  line-height: 32px;
+  margin-top: -16px;
+  margin-right: 8px;
+}
+
 div.bag {
   grid-template-columns: auto;
   grid-template-rows: auto auto;
@@ -219,6 +237,26 @@ div.die input {
   transition: border 0.25s, border-radius 0.25s, background-color 0.25s;
   vertical-align: middle;
 }
+
+div.die input[type=color] {
+  height: 34px;
+  width: 34px;
+  margin-left: -8px;
+  position: absolute;
+  left: -100px;
+}
+
+div.die input[type=color]:hover {
+  position: static;
+}
+div.die input[type=color]:focus {
+  position: static;
+}
+
+div.die input[type=text]:hover + input[type=color] {
+  position: static;
+}
+
 div.die .die-value {
   vertical-align: middle;
 }
@@ -255,7 +293,6 @@ div.die button {
   background-color: transparent;
   border: 1px solid var(--mainFGTP);
   color: var(--mainFG);
-  outline: none;
   transition: background-color 0.25s;
 }
 

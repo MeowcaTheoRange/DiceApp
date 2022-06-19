@@ -9,12 +9,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body class="compactMode">
     <div class="headerBar">
       <div style="float: left; text-align: left;">
         Dice Tool
       </div>
       <div style="float: right; text-align: right;">
+        <button class="material-icons toc" onclick="document.body.classList.toggle('compactMode');">build</button>
         <button class="material-icons" onclick="rollAllDie(cont)">shuffle</button>
         <button class="material-icons" onclick="if (confirm('Are you sure you want to remove everything?')) $('.content').find('.die').remove()">cancel</button>
       </div>
@@ -28,25 +29,26 @@
     <templates>
       <template id="dieUI"><div class="die rollable{IS_COUNTER}" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
           <div>
-            <span class="material-icons icon ident">casino</span><input class="title" placeholder="Name" type="text" value="{TITLE_DIE}"  onfocusout="this.setAttribute('value', this.value);" />
-            <button class="material-icons icon indi neg" onclick="tp(this).remove()">delete</button><br />
+            <span class="material-icons icon ident">casino</span><input class="title hos" placeholder="Name" type="text" value="{TITLE_DIE}"  onfocusout="this.setAttribute('value', this.value);" />
+            <input class="die-color hos" type="color" value="transparent" onchange="this.setAttribute('value', this.value);this.parentElement.parentElement.style.backgroundColor = this.value;" />
+            <button class="material-icons icon indi neg" onclick="tp(this).remove()">delete</button><br class="hos" />
             <div class="hideIfCounter"><button class="material-icons icon indi pos" title="Roll die" onclick="rollDie(ht(tpp(this)))">shuffle</button></div>
           </div>
           <div style="text-align: right;">
-            <button class="material-icons icon" onclick="changeVal(ht($(this)), -1)">remove</button>
-            <button class="material-icons icon" onclick="changeVal(ht($(this)), 1)">add</button>
-            <span class="hideIfCounter"><button class="material-icons icon" title="Cut die to value" onclick="cutVal(ht(tp(this)))">content_cut</button></span><br />
-            <span><h2 class="die-value">{DIE_VALUE}</h2><span class="hideIfCounter"> / <input class="die-sides" type="number" min="1" max="10000" value="{DIE_SIDES}"  onfocusout="this.setAttribute('value', this.value);" /></span></span>
+            <button class="material-icons icon hos" onclick="changeVal(ht($(this)), -1)">remove</button>
+            <button class="material-icons icon hos" onclick="changeVal(ht($(this)), 1)">add</button>
+            <span class="hideIfCounter hos"><button class="material-icons icon" title="Cut die to value" onclick="cutVal(ht(tp(this)))">content_cut</button></span><br />
+            <span><h2 class="die-value">{DIE_VALUE}</h2><span class="hideIfCounter hos"> / <input class="die-sides" type="number" min="1" max="10000" value="{DIE_SIDES}"  onfocusout="this.setAttribute('value', this.value);" /></span></span>
           </div>
       </div></template>
       <template id="dieBagUI"><div class="die bag" id="{RAND_ID}" draggable="true" ondragstart="drag(event)">
           <div>
-            <span class="material-icons icon ident">folder</span><input class="title" placeholder="Name" type="text" value="{TITLE_DIE}" onfocusout="this.setAttribute('value', this.value);" />
-            <button class="material-icons icon indi neg" onclick="if (confirm('Are you sure you want to remove this bag?')) tp(this).remove()">delete</button><br />
+            <span class="material-icons icon ident">folder</span><input class="title hos" placeholder="Name" type="text" value="{TITLE_DIE}" onfocusout="this.setAttribute('value', this.value);" /><input class="die-color hos" tabIndex="0" type="color" value="transparent" onchange="this.setAttribute('value', this.value);this.parentElement.parentElement.style.backgroundColor = this.value;" />
+            <button class="material-icons icon indi neg" onclick="if (confirm('Are you sure you want to remove this bag?')) tp(this).remove()">delete</button><br class="hos" />
             <button class="material-icons icon indi pos" title="Roll all dies inside" onclick="rollAllDie(ht(tp(this)))">shuffle</button>
-            <button class="material-icons icon indi pos" title="Add Dice" onclick="addDie(tp(this).find('.dropHere').get(0))">add_circle</button>
-            <button class="material-icons icon indi pos" title="Add Counter" onclick="addDie(tp(this).find('.dropHere').get(0), 1, 'Counter', true)">pin</button>
-            <button class="material-icons icon indi pos" title="Add Bag" onclick="addDieBag(tp(this).find('.dropHere').get(0))">create_new_folder</button>
+            <button class="material-icons icon indi pos hos" title="Add Dice" onclick="addDie(tp(this).find('.dropHere').get(0))">add_circle</button>
+            <button class="material-icons icon indi pos hos" title="Add Counter" onclick="addDie(tp(this).find('.dropHere').get(0), 1, 'Counter', true)">pin</button>
+            <button class="material-icons icon indi pos hos" title="Add Bag" onclick="addDieBag(tp(this).find('.dropHere').get(0))">create_new_folder</button>
           </div>
           <div class="dropHere"></div>
       </div></template>
